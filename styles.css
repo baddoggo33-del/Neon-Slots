@@ -1,0 +1,356 @@
+/* Fuente y fondo general */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1a0033 0%, #050010 60%, #000000 100%);
+  color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Overlay verificación de edad */
+#age-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+#age-modal {
+  background: #12001f;
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 25px #ff00ff;
+  padding: 2rem;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+#age-modal h2 {
+  color: #00ffff;
+  margin-bottom: 1rem;
+}
+
+.age-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.age-buttons button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #050010;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff;
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+  background: rgba(5, 0, 20, 0.95);
+  border-bottom: 1px solid #ff00ff55;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo span {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff, 0 0 16px #ff00ff;
+}
+
+.main-nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #f5f5f5;
+  font-weight: 500;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  transition: width 0.2s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  width: 100%;
+}
+
+/* Layout principal */
+.main-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Carrusel */
+.carousel-container {
+  position: relative;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid #00ffff55;
+  box-shadow: 0 0 25px #00ffff55;
+  height: 320px;
+
+  /* Holograma */
+  perspective: 1200px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  /* Efecto holográfico */
+  transform-style: preserve-3d;
+  animation: holoFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px #00ffffaa);
+}
+
+.slide.active {
+  opacity: 1;
+  box-shadow: 0 0 25px #00ffffaa, 0 0 45px #ff00ffaa;
+  border: 1px solid #00ffffaa;
+}
+
+@keyframes holoFloat {
+  0% {
+    transform: rotateY(-6deg) translateY(0px);
+    filter: hue-rotate(0deg) drop-shadow(0 0 12px #00ffffaa);
+  }
+  50% {
+    transform: rotateY(6deg) translateY(-6px);
+    filter: hue-rotate(40deg) drop-shadow(0 0 18px #ff00ffaa);
+  }
+  100% {
+    transform: rotateY(-6deg) translateY(0px);
+    filter: hue-rotate(0deg) drop-shadow(0 0 12px #00ffffaa);
+  }
+}
+
+/* Controles carrusel */
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+}
+
+.carousel-controls button {
+  background: transparent;
+  border: 1px solid #ff00ffaa;
+  color: #ff00ff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* --- SLOTS MÁS GRANDES Y ORDENADOS --- */
+
+.slots-links h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+}
+
+.slot-item {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(10, 0, 30, 0.7);
+  border: 1px solid #ff00ff55;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #ff00ff33;
+}
+
+.slot-link {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #00ffff;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.slot-link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px #ff00ff;
+}
+
+.slot-info {
+  font-size: 1rem;
+  color: #f0f0f0;
+  opacity: 0.9;
+}
+
+/* Página individual de slot */
+.slot-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.slot-page h1 {
+  color: #ff00ff;
+  text-shadow: 0 0 12px #ff00ff;
+  margin-bottom: 2rem;
+}
+
+.slot-img {
+  width: 60%;
+  border-radius: 12px;
+  border: 2px solid #00ffffaa;
+  box-shadow: 0 0 25px #00ffffaa;
+}
+
+/* Footer */
+.main-footer {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(5, 0, 20, 0.95);
+  border-top: 1px solid #ff00ff55;
+  display: flex;
+  gap: 1.5rem;
+}
+/* ============================================================
+   LAYOUT TRIPLE: SCATTER | SLOT | NORMALES
+============================================================ */
+.triple-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 45px;
+  margin-top: 40px;
+}
+
+/* ============================================================
+   PANELES HOLOGRÁFICOS BASE
+============================================================ */
+.paytable {
+  width: 340px;
+  padding: 32px 30px;
+  border-radius: 18px;
+  background: rgba(10, 10, 20, 0.92);
+  backdrop-filter: blur(7px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+}
+
+.paytable h2 {
+  font-size: 22px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-family: "Geo", sans-serif;
+}
+
+/* ============================================================
+   PANEL SCATTER (IZQUIERDA) → ROSA
+============================================================ */
+.paytable-scatter {
+  border: 2px solid rgba(255, 80, 200, 0.8);
+  box-shadow:
+    0 0 25px rgba(255, 80, 200, 0.5),
+    inset 0 0 30px rgba(255, 80, 200, 0.25);
+}
+
+.paytable-scatter h2,
+.paytable-scatter h3 {
+  color: #ff66ff;
+  text-shadow: 0 0 12px #ff66ff;
+}
+
+/* ============================================================
+   PANEL NORMALES + 7 (DERECHA) → VERDE
+============================================================ */
+.paytable-normal {
+  border: 2px solid rgba(0, 255, 120, 0.8);
+  box-shadow:
+    0 0 25px rgba(0, 255, 120, 0.5),
+    inset 0 0 30px rgba(0, 255, 120, 0.25);
+}
+
+.paytable-normal h2,
+.paytable-normal h3 {
+  color: #66ff99;
+  text-shadow: 0 0 12px #66ff99;
+}
+
+/* ============================================================
+   SECCIONES Y FILAS
+============================================================ */
+.paytable-section {
+  margin-bottom: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 14px;
+}
+
+.paytable-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================================
+   MINI-ICONOS REDONDOS
+============================================================ */
+.paytable-symbols img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+/* ============================================================
+   TEXTO
+============================================================ */
+.paytable-text {
+  font-size: 14px;
+  color: #eaffff;
+}
+
+.paytable-plus {
+  font-size: 16px;
+  color: #fff;
+  margin-left: 4px;
+}
