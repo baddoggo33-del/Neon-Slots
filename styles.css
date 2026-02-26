@@ -32,6 +32,9 @@ body {
   text-align: center;
   border-radius: 12px;
 }
+#age-modal p {
+  margin-bottom: 1.5rem; /* Ajusta a tu gusto */
+}
 
 #age-modal h2 {
   color: #00ffff;
