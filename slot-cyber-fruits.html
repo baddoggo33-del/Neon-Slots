@@ -13,18 +13,15 @@
 </head>
 <body>
 
-  <!-- HEADER SOLO CON BOTÓN VOLVER -->
   <header class="slot-header">
     <a href="index.html" class="back-btn">⟵ Volver</a>
   </header>
 
-  <!-- TÍTULO CENTRADO Y GRANDE -->
   <h1 class="slot-title">Cyber Fruits 777</h1>
 
-  <!-- LAYOUT PRINCIPAL: SCATTER | SLOT | NORMALES+7 -->
   <div class="triple-layout">
 
-    <!-- PANEL SCATTER (IZQUIERDA) -->
+    <!-- PANEL SCATTER -->
     <aside class="paytable paytable-scatter">
       <h2>Scatter (💎)</h2>
 
@@ -94,7 +91,7 @@
       </div>
     </aside>
 
-    <!-- SLOT (CENTRO) -->
+    <!-- SLOT -->
     <div>
       <div class="slot-container">
         <div class="reel"><div class="reel-strip" id="reel1"></div></div>
@@ -104,7 +101,6 @@
         <div class="reel"><div class="reel-strip" id="reel5"></div></div>
       </div>
 
-      <!-- HUD DEBAJO DE LA SLOT -->
       <div class="hud-under-slot">
 
         <div class="hud-box hud-left">
@@ -112,8 +108,12 @@
           <span class="hud-value" id="credits">1000</span>
         </div>
 
-        <!-- BOTÓN SPIN (ÚNICO Y GRANDE) -->
         <button id="spinBtn">SPIN</button>
+
+        <div class="volume-control">
+          <span class="volume-label">Volumen</span>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+        </div>
 
         <div class="hud-box hud-right">
           <span class="hud-label">Apuesta</span>
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <!-- PANEL NORMALES + 7 (DERECHA) -->
+    <!-- PANEL NORMAL -->
     <aside class="paytable paytable-normal">
       <h2>Pagos normales</h2>
 
@@ -200,7 +200,6 @@
 
   <div id="mensaje"></div>
 
-  <!-- AUDIOS -->
   <audio id="soundSpin" src="sounds/spin.mp3"></audio>
   <audio id="soundStop" src="sounds/stop.mp3"></audio>
   <audio id="soundWin" src="sounds/win.mp3"></audio>

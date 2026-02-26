@@ -34,6 +34,22 @@ const soundSpin = document.getElementById("soundSpin");
 const soundStop = document.getElementById("soundStop");
 const soundWin = document.getElementById("soundWin");
 
+// ============================
+// CONTROL DE VOLUMEN
+// ============================
+const volumeSlider = document.getElementById("volumeSlider");
+const sounds = [
+  document.getElementById("soundSpin"),
+  document.getElementById("soundStop"),
+  document.getElementById("soundWin")
+];
+
+// Cambiar volumen en tiempo real
+volumeSlider.addEventListener("input", () => {
+  const vol = parseFloat(volumeSlider.value);
+  sounds.forEach(s => s.volume = vol);
+});
+
 soundSpin.load();
 soundStop.load();
 soundWin.load();
