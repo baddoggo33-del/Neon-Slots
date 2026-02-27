@@ -30,21 +30,23 @@ let bet = 10;
 const creditsBox = document.getElementById("credits");
 const betBox = document.getElementById("bet");
 
+// NUEVOS BOTONES DE APUESTA
+const betMinus = document.getElementById("bet-minus");
+const betPlus = document.getElementById("bet-plus");
+
+const MIN_BET = 10;
+const BET_STEP = 10;
+
 const soundSpin = document.getElementById("soundSpin");
 const soundStop = document.getElementById("soundStop");
 const soundWin = document.getElementById("soundWin");
 
-// ============================
-// CONTROL DE VOLUMEN
-// ============================
+/* ============================
+   CONTROL DE VOLUMEN
+============================ */
 const volumeSlider = document.getElementById("volumeSlider");
-const sounds = [
-  document.getElementById("soundSpin"),
-  document.getElementById("soundStop"),
-  document.getElementById("soundWin")
-];
+const sounds = [soundSpin, soundStop, soundWin];
 
-// Cambiar volumen en tiempo real
 volumeSlider.addEventListener("input", () => {
   const vol = parseFloat(volumeSlider.value);
   sounds.forEach(s => s.volume = vol);
@@ -61,10 +63,28 @@ function safePlay(audio) {
   } catch (e) {}
 }
 
+/* ============================
+   HUD CON RARITANIOS
+============================ */
 function updateHUD() {
-  creditsBox.textContent = credits;
-  betBox.textContent = bet;
+  creditsBox.textContent = credits + " Raritanios";
+  betBox.textContent = bet + " Raritanios";
 }
+
+/* ============================
+   BOTONES DE APUESTA
+============================ */
+betMinus.addEventListener("click", () => {
+  if (bet > MIN_BET) {
+    bet -= BET_STEP;
+    updateHUD();
+  }
+});
+
+betPlus.addEventListener("click", () => {
+  bet += BET_STEP;
+  updateHUD();
+});
 
 /* ============================
    LIMPIAR HIGHLIGHT PAYTABLE
@@ -135,18 +155,15 @@ function calculateWin(matrix) {
   const paytableKeys = [];
 
   const lines = [
-    [0, 0, 0, 0, 0], // superior
-    [1, 1, 1, 1, 1], // central
-    [2, 2, 2, 2, 2], // inferior
-    [0, 1, 2, 1, 0], // diagonal ↘️
-    [2, 1, 0, 1, 2]  // diagonal ↙️
+    [0, 0, 0, 0, 0], 
+    [1, 1, 1, 1, 1], 
+    [2, 2, 2, 2, 2], 
+    [0, 1, 2, 1, 0], 
+    [2, 1, 0, 1, 2]  
   ];
 
   const SCATTER = "diamond";
 
-  /* ============================
-     1. CONTAR SCATTERS
-  ============================ */
   let scatterCount = 0;
 
   for (let col = 0; col < 5; col++) {
@@ -170,18 +187,13 @@ function calculateWin(matrix) {
     totalWin += bet * multiplier;
     scatterWin = true;
 
-    let key = "";
-    if (scatterCount >= 3 && scatterCount <= 7) {
-      key = `scatter-${scatterCount}`;
-    } else {
-      key = "scatter-8plus";
-    }
+    let key = scatterCount >= 3 && scatterCount <= 7
+      ? `scatter-${scatterCount}`
+      : "scatter-8plus";
+
     paytableKeys.push(key);
   }
 
-  /* ============================
-     2. PAGOS NORMALES (3+ consecutivos)
-  ============================ */
   for (const pattern of lines) {
     const line = pattern.map((row, col) => matrix[col][row]);
 
@@ -210,9 +222,7 @@ function calculateWin(matrix) {
 
         if (multiplier > 0) {
           totalWin += bet * multiplier;
-          if (key && !paytableKeys.includes(key)) {
-            paytableKeys.push(key);
-          }
+          if (!paytableKeys.includes(key)) paytableKeys.push(key);
         }
       }
 
@@ -228,7 +238,6 @@ function calculateWin(matrix) {
 ============================ */
 async function spin() {
 
-  /* DESACTIVAR PARPADEO Y ARCOÍRIS AL EMPEZAR */
   spinBtn.classList.remove("blink", "rainbow");
 
   if (credits < bet) {
@@ -249,20 +258,15 @@ async function spin() {
 
   const results = [];
 
-  /* Duraciones exactas para total = 7.9s */
   const reelDurations = [1100, 1400, 1600, 1900, 1900];
 
   for (let i = 0; i < reels.length; i++) {
-    const duration = reelDurations[i];
-    const r = await spinReelWithBlur(reels[i], duration);
+    const r = await spinReelWithBlur(reels[i], reelDurations[i]);
     results.push(r);
   }
 
   const { totalWin, scatterWin, paytableKeys } = calculateWin(results);
 
-  /* ============================
-     ILUMINAR FILAS PAYTABLE
-  ============================ */
   paytableKeys.forEach(key => {
     const row = document.getElementById(`pay-${key}`);
     if (!row) return;
@@ -274,9 +278,6 @@ async function spin() {
     }
   });
 
-  /* ============================
-     MENSAJE FINAL (ACTUALIZADO)
-  ============================ */
   if (totalWin > 0) {
     credits += totalWin;
     updateHUD();
@@ -285,19 +286,18 @@ async function spin() {
     const ganoScatter = scatterWin;
     const ganoNormal = paytableKeys.some(k => k.startsWith("normal") || k.startsWith("seven"));
 
-    // MODO ARCOÍRIS CUANDO GANAS
     spinBtn.classList.add("rainbow");
 
     if (ganoScatter && ganoNormal) {
-      mensaje.textContent = `¡Ganaste ${totalWin} créditos! (Scatter + Normales)`;
+      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios! (Scatter + Normales)`;
       mensaje.className = "win";
     } 
     else if (ganoScatter) {
-      mensaje.textContent = `¡Ganaste ${totalWin} créditos por SCATTER!`;
+      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios por SCATTER!`;
       mensaje.className = "scatter-win";
     } 
     else if (ganoNormal) {
-      mensaje.textContent = `¡Ganaste ${totalWin} créditos por combinación normal!`;
+      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios por combinación normal!`;
       mensaje.className = "win";
     }
 
@@ -306,8 +306,6 @@ async function spin() {
   } else {
     mensaje.textContent = "Nada esta vez…";
     mensaje.className = "lose";
-
-    // SI NO GANAS, VUELVE A PARPADEAR
     spinBtn.classList.add("blink");
   }
 
@@ -318,3 +316,16 @@ async function spin() {
    INICIO
 ============================ */
 spinBtn.addEventListener("click", spin);
+
+function scaleSlot() {
+  const wrapper = document.getElementById("slot-wrapper");
+  const baseWidth = 1200;
+  const scale = Math.min(window.innerWidth / baseWidth, 1);
+  wrapper.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", scaleSlot);
+window.addEventListener("load", () => {
+  updateHUD();
+  scaleSlot();
+});

@@ -2,11 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neon Slots - Inicio</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Verificación de edad -->
+
+  <!-- ============================
+       VERIFICACIÓN DE EDAD
+  ============================ -->
   <div id="age-overlay">
     <div id="age-modal">
       <h2>Verificación de edad</h2>
@@ -18,26 +22,76 @@
     </div>
   </div>
 
-  <!-- Header -->
+  <!-- ============================
+       BANNER DE COOKIES
+  ============================ -->
+  <div id="cookie-banner" style="display:none;">
+    <div class="cookie-box">
+      <p>Usamos cookies para mejorar tu experiencia en Neon Slots.</p>
+      <div class="cookie-buttons">
+        <button id="cookie-accept">Aceptar</button>
+        <button id="cookie-decline">Rechazar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       LOGIN (MODAL COMPLETO)
+  ============================ -->
+  <div id="login-overlay" class="modal" style="display:none;">
+    <div class="modal-box login-box">
+      <h2>Iniciar sesión</h2>
+
+      <label>Usuario</label>
+      <input id="username-input" type="text" placeholder="Tu nombre">
+
+      <label>Contraseña</label>
+      <input id="password-input" type="password" placeholder="Tu contraseña">
+
+      <label>Método de pago</label>
+      <select id="payment-input">
+        <option value="visa">Visa</option>
+        <option value="mastercard">MasterCard</option>
+        <option value="paypal">PayPal</option>
+        <option value="crypto">Criptomonedas</option>
+      </select>
+
+      <button id="login-submit">Entrar</button>
+    </div>
+  </div>
+
+  <!-- ============================
+       HEADER
+  ============================ -->
   <header class="main-header">
     <div class="logo">
       <span>Neon Slots</span>
     </div>
+
     <nav class="main-nav">
       <a href="index.html">Inicio</a>
       <a href="sobre.html">Sobre nosotros</a>
     </nav>
+
+    <!-- Área de usuario -->
+    <div class="user-area">
+      <span id="login-user"></span>
+      <button id="login-btn">Iniciar sesión</button>
+      <button id="logout-btn" style="display:none;">Cerrar sesión</button>
+    </div>
   </header>
 
-  <!-- Contenido principal -->
+  <!-- ============================
+       CONTENIDO PRINCIPAL
+  ============================ -->
   <main class="main-layout">
+
     <!-- Carrusel -->
     <section class="carousel-container">
       <div class="carousel">
         <div class="slide active" style="background-image: url('https://www.landas-vacaciones.com/wp-content/uploads/sites/4/wpetourisme/IMG-3423-4.jpg');"></div>
 
         <div class="slide" style="background-image: url('https://blog.casinobarcelona.com/hs-fs/hubfs/asdfhfhsdf-1.jpg?width=4032&height=3024&name=asdfhfhsdf-1.jpg');"></div>
-
       </div>
 
       <div class="carousel-controls">
@@ -65,24 +119,32 @@
         <p class="slot-info">Una noche eterna de casino, luces brillantes y bonos sorpresa.</p>
       </div>
     </section>
+
   </main>
 
-  <!-- Footer -->
+  <!-- ============================
+       FOOTER
+  ============================ -->
   <footer class="main-footer">
     <div><strong>Email:</strong> baddoggo33@gmail.com</div>
     <div><strong>Contacto:</strong> 611408852</div>
     <div><strong>Términos y condiciones:</strong> El juego implica riesgo. Juega con responsabilidad.</div>
   </footer>
 
-  <script src="script.js"></script>
-<audio id="bg-music" loop>
-  <source src="sounds/inkwell.mp3" type="audio/mpeg">
-</audio>
+  <!-- ============================
+       AUDIO + CONTROL DE VOLUMEN
+  ============================ -->
+  <audio id="bg-music" loop>
+    <source src="sounds/inkwell.mp3" type="audio/mpeg">
+  </audio>
 
-<div class="volume-control">
-  <span class="volume-label">Volumen</span>
-  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-</div>
+  <div class="volume-control">
+    <span class="volume-label">Volumen</span>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 
 </body>
 </html>

@@ -433,3 +433,231 @@ body {
   transform: scale(1.25);
   box-shadow: 0 0 25px #ff00ff, 0 0 35px #00ffff;
 }
+
+/* ============================
+   BANNER DE COOKIES NEON
+============================ */
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 0, 30, 0.92);
+  border-top: 2px solid #ff00ff;
+  box-shadow: 0 0 25px #ff00ff;
+  padding: 1rem 1.5rem;
+  display: none; /* Oculto por defecto */
+  z-index: 998;
+}
+
+.cookie-box {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cookie-box p {
+  font-size: 0.95rem;
+  color: #eaffff;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.cookie-buttons button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #050010;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff;
+}
+/* ============================
+   BOTÓN LOGIN NEON + ARCOÍRIS
+============================ */
+#login-btn, #logout-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #050010;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff, 0 0 20px #00ffff;
+  transition: all 0.3s ease;
+}
+
+/* Efecto arcoíris al pasar el ratón */
+#login-btn:hover, #logout-btn:hover {
+  animation: rainbowGlow 2s linear infinite;
+  transform: scale(1.08);
+}
+
+@keyframes rainbowGlow {
+  0% { background: linear-gradient(90deg, #ff0000, #ff7f00); }
+  20% { background: linear-gradient(90deg, #ff7f00, #ffff00); }
+  40% { background: linear-gradient(90deg, #ffff00, #00ff00); }
+  60% { background: linear-gradient(90deg, #00ff00, #0000ff); }
+  80% { background: linear-gradient(90deg, #0000ff, #8b00ff); }
+  100% { background: linear-gradient(90deg, #8b00ff, #ff0000); }
+}
+/* ============================
+   BOTÓN LOGIN NEON + ARCOÍRIS SUAVE
+============================ */
+#login-btn, #logout-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #050010;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff, 0 0 20px #00ffff;
+  transition: all 0.3s ease;
+}
+
+/* Hover arcoíris suave */
+#login-btn:hover, #logout-btn:hover {
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #8b00ff,
+    #ff00ff
+  );
+  background-size: 400%;
+  animation: rainbowFlow 4s linear infinite;
+  transform: scale(1.08);
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
+}
+/* ============================
+   BOTÓN LOGIN NEON + ARCOÍRIS SUAVE
+============================ */
+#login-btn, #logout-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #050010;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff, 0 0 20px #00ffff;
+  transition: all 0.3s ease;
+}
+
+/* Hover arcoíris suave */
+#login-btn:hover, #logout-btn:hover {
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #8b00ff,
+    #ff00ff
+  );
+  background-size: 400%;
+  animation: rainbowFlow 4s linear infinite;
+  transform: scale(1.08);
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
+}
+
+/* ============================
+   MODAL LOGIN NEON
+============================ */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.login-box {
+  background: rgba(10, 0, 30, 0.9);
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 25px #ff00ff, inset 0 0 20px #00ffff55;
+  padding: 2rem;
+  width: 350px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  margin-bottom: 1rem;
+}
+
+/* Inputs neon */
+.login-box input,
+.login-box select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 2px solid #00ffffaa;
+  background: rgba(0, 0, 20, 0.6);
+  color: #eaffff;
+  font-size: 1rem;
+  box-shadow: 0 0 12px #00ffff55;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.login-box input:focus,
+.login-box select:focus {
+  border-color: #ff00ff;
+  box-shadow: 0 0 15px #ff00ff;
+}
+
+/* Botón de enviar login */
+#login-submit {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #050010;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 12px #ff00ff, 0 0 20px #00ffff;
+  transition: 0.3s ease;
+}
+
+#login-submit:hover {
+  animation: rainbowFlow 4s linear infinite;
+  background-size: 400%;
+  transform: scale(1.05);
+}

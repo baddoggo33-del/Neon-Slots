@@ -13,196 +13,206 @@
 </head>
 <body>
 
-  <header class="slot-header">
-    <a href="index.html" class="back-btn">⟵ Volver</a>
-  </header>
+  <!-- 🔥 WRAPPER PARA ESCALAR TODO EL SLOT 🔥 -->
+  <div id="slot-wrapper">
 
-  <h1 class="slot-title">Cyber Fruits 777</h1>
+    <header class="slot-header">
+      <a href="index.html" class="back-btn">⟵ Volver</a>
+    </header>
 
-  <div class="triple-layout">
+    <h1 class="slot-title">Cyber Fruits 777</h1>
 
-    <!-- PANEL SCATTER -->
-    <aside class="paytable paytable-scatter">
-      <h2>Scatter (💎)</h2>
+    <div class="triple-layout">
 
-      <div class="paytable-section">
-        <div class="paytable-row" id="pay-scatter-3">
-          <div class="paytable-symbols">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
+      <!-- PANEL SCATTER -->
+      <aside class="paytable paytable-scatter">
+        <h2>Scatter (💎)</h2>
+
+        <div class="paytable-section">
+          <div class="paytable-row" id="pay-scatter-3">
+            <div class="paytable-symbols">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+            </div>
+            <span class="paytable-text">3 scatters → x3</span>
           </div>
-          <span class="paytable-text">3 scatters → x3</span>
+
+          <div class="paytable-row" id="pay-scatter-4">
+            <div class="paytable-symbols">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+            </div>
+            <span class="paytable-text">4 scatters → x10</span>
+          </div>
+
+          <div class="paytable-row" id="pay-scatter-5">
+            <div class="paytable-symbols">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+            </div>
+            <span class="paytable-text">5 scatters → x30</span>
+          </div>
+
+          <div class="paytable-row" id="pay-scatter-6">
+            <div class="paytable-symbols">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+            </div>
+            <span class="paytable-text">6 scatters → x50</span>
+          </div>
+
+          <div class="paytable-row" id="pay-scatter-7">
+            <div class="paytable-symbols">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+              <img src="img/diamond.jpeg">
+            </div>
+            <span class="paytable-text">7 scatters → x100</span>
+          </div>
+
+          <div class="paytable-row" id="pay-scatter-8plus">
+            <div class="paytable-symbols">
+              <img src="img/diamond.jpeg">
+              <span class="paytable-plus">8+</span>
+            </div>
+            <span class="paytable-text">8+ scatters → x150</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- SLOT -->
+      <div>
+        <div class="slot-container">
+          <div class="reel"><div class="reel-strip" id="reel1"></div></div>
+          <div class="reel"><div class="reel-strip" id="reel2"></div></div>
+          <div class="reel"><div class="reel-strip" id="reel3"></div></div>
+          <div class="reel"><div class="reel-strip" id="reel4"></div></div>
+          <div class="reel"><div class="reel-strip" id="reel5"></div></div>
         </div>
 
-        <div class="paytable-row" id="pay-scatter-4">
-          <div class="paytable-symbols">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-          </div>
-          <span class="paytable-text">4 scatters → x10</span>
-        </div>
+        <div class="hud-under-slot">
 
-        <div class="paytable-row" id="pay-scatter-5">
-          <div class="paytable-symbols">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
+          <div class="hud-box hud-left">
+            <span class="hud-label">Créditos</span>
+            <span class="hud-value" id="credits">1000 Raritanios</span>
           </div>
-          <span class="paytable-text">5 scatters → x30</span>
-        </div>
 
-        <div class="paytable-row" id="pay-scatter-6">
-          <div class="paytable-symbols">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-          </div>
-          <span class="paytable-text">6 scatters → x50</span>
-        </div>
+          <button id="spinBtn">SPIN</button>
 
-        <div class="paytable-row" id="pay-scatter-7">
-          <div class="paytable-symbols">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
-            <img src="img/diamond.jpeg">
+          <div class="volume-control">
+            <span class="volume-label">Volumen</span>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
           </div>
-          <span class="paytable-text">7 scatters → x100</span>
-        </div>
 
-        <div class="paytable-row" id="pay-scatter-8plus">
-          <div class="paytable-symbols">
-            <img src="img/diamond.jpeg">
-            <span class="paytable-plus">8+</span>
+          <div class="hud-box hud-right">
+            <span class="hud-label">Apuesta</span>
+
+          <div class="bet-controls">
+             <button id="bet-minus" class="bet-btn">−</button>
+              <span class="hud-value" id="bet">10 Raritanios</span>
+             <button id="bet-plus" class="bet-btn">+</button>
+           </div>
           </div>
-          <span class="paytable-text">8+ scatters → x150</span>
+
         </div>
       </div>
-    </aside>
 
-    <!-- SLOT -->
-    <div>
-      <div class="slot-container">
-        <div class="reel"><div class="reel-strip" id="reel1"></div></div>
-        <div class="reel"><div class="reel-strip" id="reel2"></div></div>
-        <div class="reel"><div class="reel-strip" id="reel3"></div></div>
-        <div class="reel"><div class="reel-strip" id="reel4"></div></div>
-        <div class="reel"><div class="reel-strip" id="reel5"></div></div>
-      </div>
+      <!-- PANEL NORMAL -->
+      <aside class="paytable paytable-normal">
+        <h2>Pagos normales</h2>
 
-      <div class="hud-under-slot">
+        <div class="paytable-section">
+          <h3>Símbolos normales</h3>
 
-        <div class="hud-box hud-left">
-          <span class="hud-label">Créditos</span>
-          <span class="hud-value" id="credits">1000</span>
+          <div class="paytable-row" id="pay-normal-3">
+            <div class="paytable-symbols">
+              <img src="img/cherry.jpeg">
+              <img src="img/cherry.jpeg">
+              <img src="img/cherry.jpeg">
+            </div>
+            <span class="paytable-text">3 iguales → x5</span>
+          </div>
+
+          <div class="paytable-row" id="pay-normal-4">
+            <div class="paytable-symbols">
+              <img src="img/watermelon.jpeg">
+              <img src="img/watermelon.jpeg">
+              <img src="img/watermelon.jpeg">
+              <img src="img/watermelon.jpeg">
+            </div>
+            <span class="paytable-text">4 iguales → x15</span>
+          </div>
+
+          <div class="paytable-row" id="pay-normal-5">
+            <div class="paytable-symbols">
+              <img src="img/star.jpeg">
+              <img src="img/star.jpeg">
+              <img src="img/star.jpeg">
+              <img src="img/star.jpeg">
+              <img src="img/star.jpeg">
+            </div>
+            <span class="paytable-text">5 iguales → x40</span>
+          </div>
         </div>
 
-        <button id="spinBtn">SPIN</button>
+        <div class="paytable-section">
+          <h3>Símbolo 7</h3>
 
-        <div class="volume-control">
-          <span class="volume-label">Volumen</span>
-          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+          <div class="paytable-row" id="pay-seven-3">
+            <div class="paytable-symbols">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+            </div>
+            <span class="paytable-text">3 sietes → x20</span>
+          </div>
+
+          <div class="paytable-row" id="pay-seven-4">
+            <div class="paytable-symbols">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+            </div>
+            <span class="paytable-text">4 sietes → x50</span>
+          </div>
+
+          <div class="paytable-row" id="pay-seven-5">
+            <div class="paytable-symbols">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+              <img src="img/seven.jpeg">
+            </div>
+            <span class="paytable-text">5 sietes → x200</span>
+          </div>
         </div>
+      </aside>
 
-        <div class="hud-box hud-right">
-          <span class="hud-label">Apuesta</span>
-          <span class="hud-value" id="bet">10</span>
-        </div>
-
-      </div>
     </div>
 
-    <!-- PANEL NORMAL -->
-    <aside class="paytable paytable-normal">
-      <h2>Pagos normales</h2>
+    <div id="mensaje"></div>
 
-      <div class="paytable-section">
-        <h3>Símbolos normales</h3>
+    <audio id="soundSpin" src="sounds/spin.mp3"></audio>
+    <audio id="soundStop" src="sounds/stop.mp3"></audio>
+    <audio id="soundWin" src="sounds/win.mp3"></audio>
 
-        <div class="paytable-row" id="pay-normal-3">
-          <div class="paytable-symbols">
-            <img src="img/cherry.jpeg">
-            <img src="img/cherry.jpeg">
-            <img src="img/cherry.jpeg">
-          </div>
-          <span class="paytable-text">3 iguales → x5</span>
-        </div>
-
-        <div class="paytable-row" id="pay-normal-4">
-          <div class="paytable-symbols">
-            <img src="img/watermelon.jpeg">
-            <img src="img/watermelon.jpeg">
-            <img src="img/watermelon.jpeg">
-            <img src="img/watermelon.jpeg">
-          </div>
-          <span class="paytable-text">4 iguales → x15</span>
-        </div>
-
-        <div class="paytable-row" id="pay-normal-5">
-          <div class="paytable-symbols">
-            <img src="img/star.jpeg">
-            <img src="img/star.jpeg">
-            <img src="img/star.jpeg">
-            <img src="img/star.jpeg">
-            <img src="img/star.jpeg">
-          </div>
-          <span class="paytable-text">5 iguales → x40</span>
-        </div>
-      </div>
-
-      <div class="paytable-section">
-        <h3>Símbolo 7</h3>
-
-        <div class="paytable-row" id="pay-seven-3">
-          <div class="paytable-symbols">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-          </div>
-          <span class="paytable-text">3 sietes → x20</span>
-        </div>
-
-        <div class="paytable-row" id="pay-seven-4">
-          <div class="paytable-symbols">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-          </div>
-          <span class="paytable-text">4 sietes → x50</span>
-        </div>
-
-        <div class="paytable-row" id="pay-seven-5">
-          <div class="paytable-symbols">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-            <img src="img/seven.jpeg">
-          </div>
-          <span class="paytable-text">5 sietes → x200</span>
-        </div>
-      </div>
-    </aside>
-
-  </div>
-
-  <div id="mensaje"></div>
-
-  <audio id="soundSpin" src="sounds/spin.mp3"></audio>
-  <audio id="soundStop" src="sounds/stop.mp3"></audio>
-  <audio id="soundWin" src="sounds/win.mp3"></audio>
+  </div> <!-- 🔥 FIN DEL WRAPPER 🔥 -->
 
   <script src="slot-cyber-fruits.js"></script>
 </body>
