@@ -412,3 +412,148 @@ h1,
 .bet-btn:active {
   transform: scale(0.9);
 }
+
+/* ============================
+   MODO ARCOÍRIS — EFECTO EN LA SLOT
+============================ */
+.rainbow-spin {
+  animation: rainbowBackground 1.2s linear infinite;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+}
+
+/* Botón SPIN en modo arcoíris */
+.rainbow-spin-btn {
+  animation: rainbowGlowBtn 1s linear infinite;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Animación del fondo arcoíris */
+@keyframes rainbowBackground {
+  0%   { filter: hue-rotate(0deg); }
+  25%  { filter: hue-rotate(90deg); }
+  50%  { filter: hue-rotate(180deg); }
+  75%  { filter: hue-rotate(270deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Glow arcoíris del botón */
+@keyframes rainbowGlowBtn {
+  0%   { box-shadow: 0 0 20px red; }
+  20%  { box-shadow: 0 0 20px orange; }
+  40%  { box-shadow: 0 0 20px yellow; }
+  60%  { box-shadow: 0 0 20px green; }
+  80%  { box-shadow: 0 0 20px blue; }
+  100% { box-shadow: 0 0 20px purple; }
+}
+/* ============================
+   MODO ARCOÍRIS — VERSIÓN EXAGERADA
+============================ */
+
+/* Fondo de toda la página en modo arcoíris */
+body.rainbow-bg {
+  animation: rainbowBody 2s linear infinite;
+}
+
+/* Slot completa con efecto arcoíris fuerte */
+.rainbow-spin {
+  animation: rainbowSlot 1s linear infinite;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.9), inset 0 0 25px rgba(255, 255, 255, 0.6);
+  border-color: #fff !important;
+}
+
+/* Bordes de las tablas en modo arcoíris */
+.paytable.rainbow-table {
+  animation: rainbowBorder 1.2s linear infinite;
+  border-width: 3px !important;
+}
+
+/* Botón SPIN en modo arcoíris exagerado */
+.rainbow-spin-btn {
+  animation: rainbowGlowBtn 0.7s linear infinite;
+  color: #fff;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+/* ============================
+   ANIMACIONES
+============================ */
+
+/* Fondo del body */
+@keyframes rainbowBody {
+  0%   { background: #ff0000; }
+  20%  { background: #ff7f00; }
+  40%  { background: #ffff00; }
+  60%  { background: #00ff00; }
+  80%  { background: #0000ff; }
+  100% { background: #8b00ff; }
+}
+
+/* Slot arcoíris */
+@keyframes rainbowSlot {
+  0%   { filter: hue-rotate(0deg); }
+  25%  { filter: hue-rotate(90deg); }
+  50%  { filter: hue-rotate(180deg); }
+  75%  { filter: hue-rotate(270deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Bordes arcoíris */
+@keyframes rainbowBorder {
+  0%   { border-color: red; }
+  20%  { border-color: orange; }
+  40%  { border-color: yellow; }
+  60%  { border-color: green; }
+  80%  { border-color: blue; }
+  100% { border-color: purple; }
+}
+
+/* Glow del botón */
+@keyframes rainbowGlowBtn {
+  0%   { box-shadow: 0 0 25px red; }
+  20%  { box-shadow: 0 0 25px orange; }
+  40%  { box-shadow: 0 0 25px yellow; }
+  60%  { box-shadow: 0 0 25px green; }
+  80%  { box-shadow: 0 0 25px blue; }
+  100% { box-shadow: 0 0 25px purple; }
+}
+#rainbow-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  font-size: 120px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+#rainbow-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  font-size: 120px;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#rainbow-banner.flash {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes rainbowPulse {
+  0% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00; }
+  100% { text-shadow: 0 0 40px #ff00ff, 0 0 80px #00ffff, 0 0 120px #ffff00; }
+}

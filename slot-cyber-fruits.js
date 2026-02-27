@@ -6,12 +6,11 @@ const symbols = [
   "img/lemon.jpeg",
   "img/watermelon.jpeg",
   "img/grape.jpeg",
-  "img/diamond.jpeg", // SCATTER
+  "img/diamond.jpeg",
   "img/star.jpeg",
   "img/seven.jpeg"
 ];
 
-// 5 columnas
 const reels = [
   document.getElementById("reel1"),
   document.getElementById("reel2"),
@@ -27,34 +26,39 @@ const slotContainer = document.querySelector(".slot-container");
 let credits = 1000;
 let bet = 10;
 
+let rainbowActive = false;
+let rainbowTimeout = null;
+
+let spinCounter = 0;
+
 const creditsBox = document.getElementById("credits");
 const betBox = document.getElementById("bet");
 
-// NUEVOS BOTONES DE APUESTA
 const betMinus = document.getElementById("bet-minus");
 const betPlus = document.getElementById("bet-plus");
 
 const MIN_BET = 10;
 const BET_STEP = 10;
 
+// 🌈 MODO ARCOÍRIS
+const RAINBOW_CHANCE = 1; // 100% para pruebas
+const RAINBOW_MULTIPLIER = 3;
+
 const soundSpin = document.getElementById("soundSpin");
 const soundStop = document.getElementById("soundStop");
 const soundWin = document.getElementById("soundWin");
+const soundRainbow = document.getElementById("soundRainbow");
 
 /* ============================
    CONTROL DE VOLUMEN
 ============================ */
 const volumeSlider = document.getElementById("volumeSlider");
-const sounds = [soundSpin, soundStop, soundWin];
+const sounds = [soundSpin, soundStop, soundWin, soundRainbow];
 
 volumeSlider.addEventListener("input", () => {
   const vol = parseFloat(volumeSlider.value);
   sounds.forEach(s => s.volume = vol);
 });
-
-soundSpin.load();
-soundStop.load();
-soundWin.load();
 
 function safePlay(audio) {
   try {
@@ -64,7 +68,7 @@ function safePlay(audio) {
 }
 
 /* ============================
-   HUD CON RARITANIOS
+   HUD
 ============================ */
 function updateHUD() {
   creditsBox.textContent = credits + " Raritanios";
@@ -87,7 +91,7 @@ betPlus.addEventListener("click", () => {
 });
 
 /* ============================
-   LIMPIAR HIGHLIGHT PAYTABLE
+   LIMPIAR PAYTABLE
 ============================ */
 function clearHighlights() {
   document
@@ -98,7 +102,7 @@ function clearHighlights() {
 }
 
 /* ============================
-   MOSTRAR 3 SÍMBOLOS POR COLUMNA
+   MOSTRAR SÍMBOLOS
 ============================ */
 function showRandomColumn(reel) {
   reel.innerHTML = "";
@@ -115,7 +119,7 @@ function showRandomColumn(reel) {
 }
 
 /* ============================
-   ANIMACIÓN DE GIRO
+   GIRO CON BLUR
 ============================ */
 function spinReelWithBlur(reel, duration) {
   return new Promise(resolve => {
@@ -139,7 +143,7 @@ function spinReelWithBlur(reel, duration) {
 }
 
 /* ============================
-   GLOW DE VICTORIA
+   GLOW
 ============================ */
 function applyWinGlow(active) {
   slotContainer.classList.remove("win-glow");
@@ -147,7 +151,7 @@ function applyWinGlow(active) {
 }
 
 /* ============================
-   PAYTABLE + SCATTER + CLAVES PAYTABLE
+   PAYTABLE
 ============================ */
 function calculateWin(matrix) {
   let totalWin = 0;
@@ -155,11 +159,11 @@ function calculateWin(matrix) {
   const paytableKeys = [];
 
   const lines = [
-    [0, 0, 0, 0, 0], 
-    [1, 1, 1, 1, 1], 
-    [2, 2, 2, 2, 2], 
-    [0, 1, 2, 1, 0], 
-    [2, 1, 0, 1, 2]  
+    [0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1],
+    [2, 2, 2, 2, 2],
+    [0, 1, 2, 1, 0],
+    [2, 1, 0, 1, 2]
   ];
 
   const SCATTER = "diamond";
@@ -236,7 +240,28 @@ function calculateWin(matrix) {
 /* ============================
    SPIN PRINCIPAL
 ============================ */
+function shouldTriggerRainbow() {
+  spinCounter++;
+
+  if (spinCounter >= 15) {
+    spinCounter = 0; // reiniciar contador
+    return true;     // activar modo arcoíris
+  }
+
+  return false;      // no activar
+}
 async function spin() {
+
+  // LIMPIAR EFECTOS SOLO SI NO ESTAMOS EN MODO ARCOÍRIS
+if (!rainbowActive) {
+  document.body.classList.remove("rainbow-bg");
+  slotContainer.classList.remove("rainbow-spin");
+  spinBtn.classList.remove("rainbow-spin-btn");
+
+  document.querySelectorAll(".paytable").forEach(t => {
+    t.classList.remove("rainbow-table");
+  });
+}
 
   spinBtn.classList.remove("blink", "rainbow");
 
@@ -244,6 +269,8 @@ async function spin() {
     mensaje.textContent = "No tienes créditos suficientes.";
     return;
   }
+
+  const isRainbowSpin = shouldTriggerRainbow();
 
   spinBtn.disabled = true;
   mensaje.textContent = "";
@@ -254,10 +281,63 @@ async function spin() {
   credits -= bet;
   updateHUD();
 
-  safePlay(soundSpin);
+ // ACTIVAR MODO ARCOÍRIS (34 segundos)
+if (isRainbowSpin && !rainbowActive) {
+
+    rainbowActive = true;
+
+    const banner = document.getElementById("rainbow-banner");
+banner.classList.add("flash");
+
+setTimeout(() => {
+  banner.classList.remove("flash");
+}, 1000); // 1 segundo
+
+    // Activar efectos visuales
+    document.body.classList.add("rainbow-bg");
+    slotContainer.classList.add("rainbow-spin");
+    spinBtn.classList.add("rainbow-spin-btn");
+
+    document.getElementById("rainbow-banner").classList.add("active");
+
+    document.querySelectorAll(".paytable").forEach(t => {
+        t.classList.add("rainbow-table");
+    });
+
+    mensaje.textContent = "¡Modo Arcoíris activado! Ganancias x3 durante 34 segundos.";
+
+    // Música arcoíris en loop
+    soundRainbow.loop = true;
+    safePlay(soundRainbow);
+
+    // Temporizador de 34 segundos
+    rainbowTimeout = setTimeout(() => {
+
+        rainbowActive = false;
+
+        // Apagar efectos visuales
+        document.body.classList.remove("rainbow-bg");
+        slotContainer.classList.remove("rainbow-spin");
+        spinBtn.classList.remove("rainbow-spin-btn");
+
+        document.getElementById("rainbow-banner").classList.remove("active");
+
+        document.querySelectorAll(".paytable").forEach(t => {
+            t.classList.remove("rainbow-table");
+        });
+
+        // Parar música
+        soundRainbow.pause();
+        soundRainbow.currentTime = 0;
+
+        mensaje.textContent = "🌈 El Modo Arcoíris ha terminado.";
+
+    }, 34000);
+}
+
+  if (!rainbowActive) safePlay(soundSpin);
 
   const results = [];
-
   const reelDurations = [1100, 1400, 1600, 1900, 1900];
 
   for (let i = 0; i < reels.length; i++) {
@@ -265,8 +345,9 @@ async function spin() {
     results.push(r);
   }
 
-  const { totalWin, scatterWin, paytableKeys } = calculateWin(results);
+  let { totalWin, scatterWin, paytableKeys } = calculateWin(results);
 
+   // Iluminar paytable
   paytableKeys.forEach(key => {
     const row = document.getElementById(`pay-${key}`);
     if (!row) return;
@@ -278,6 +359,11 @@ async function spin() {
     }
   });
 
+  // Aplicar multiplicador arcoíris
+  if (rainbowActive && totalWin > 0) {
+    totalWin *= RAINBOW_MULTIPLIER;
+}
+  // Mostrar resultados
   if (totalWin > 0) {
     credits += totalWin;
     updateHUD();
@@ -289,28 +375,32 @@ async function spin() {
     spinBtn.classList.add("rainbow");
 
     if (ganoScatter && ganoNormal) {
-      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios! (Scatter + Normales)`;
+      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios! (Scatter + Normales${isRainbowSpin ? " x3 Modo Arcoíris" : ""})`;
       mensaje.className = "win";
     } 
     else if (ganoScatter) {
-      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios por SCATTER!`;
+      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios por SCATTER${isRainbowSpin ? " x3 Modo Arcoíris" : ""}!`;
       mensaje.className = "scatter-win";
     } 
     else if (ganoNormal) {
-      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios por combinación normal!`;
+      mensaje.textContent = `¡Ganaste ${totalWin} Raritanios por combinación normal${isRainbowSpin ? " x3 Modo Arcoíris" : ""}!`;
       mensaje.className = "win";
     }
 
     applyWinGlow(true);
 
   } else {
-    mensaje.textContent = "Nada esta vez…";
+    if (!isRainbowSpin) {
+      mensaje.textContent = "Nada esta vez…";
+    } else {
+      mensaje.textContent = "Ni con modo arcoíris ganas, matao...";
+    }
     mensaje.className = "lose";
     spinBtn.classList.add("blink");
   }
-
+  // Reactivar botón al terminar el giro
   spinBtn.disabled = false;
-}
+} // ← ESTA ES LA LLAVE QUE FALTABA (cierra la función spin)
 
 /* ============================
    INICIO
